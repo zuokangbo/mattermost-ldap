@@ -92,13 +92,13 @@ type LdapConfig struct {
 }
 
 type URLConfig struct {
-	Http_type string
-	Base_url  string
+	HttpType string
+	BaseUrl  string
 }
 
 type Config struct {
-	Ldap LdapConfig
-	RUL  URLConfig
+	Ldap       LdapConfig
+	BaseConfig URLConfig
 }
 
 func ParseConfig() (cfg Config) {
@@ -347,8 +347,8 @@ func main() {
 	// First bind with a read only user
 	bindusername = ldap_test.Ldap.BindDn
 	bindpassword = ldap_test.Ldap.BindPassword
-	base_url_str = ldap_test.RUL.Base_url
-	http_type = ldap_test.RUL.Http_type
+	base_url_str = ldap_test.BaseConfig.BaseUrl
+	http_type = ldap_test.BaseConfig.HttpType
 
 	err = LDAP_CONNECT.Bind(ldap_test.Ldap.BindDn, ldap_test.Ldap.BindPassword)
 	if err != nil {
